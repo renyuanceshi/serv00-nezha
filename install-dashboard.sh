@@ -14,7 +14,7 @@ get_current_version() {
 
 get_latest_version() {
     # Get latest release version number
-    RELEASE_LATEST=$(curl -s https://api.github.com/repos/ansoncloud8/am-nezha-freebsd/releases/latest | jq -r '.tag_name')
+    RELEASE_LATEST=$(curl -s https://api.github.com/repos/renyuanceshi/nezha-freebsd/releases/latest | jq -r '.tag_name')
     if [[ -z "$RELEASE_LATEST" ]]; then
         echo "error: Failed to get the latest release version, please check your network."
         exit 1
@@ -22,12 +22,12 @@ get_latest_version() {
 }
 
 download_nezha() {
-    DOWNLOAD_LINK="https://github.com/ansoncloud8/am-nezha-freebsd/releases/latest/download/dashboard"
+    DOWNLOAD_LINK="https://github.com/renyuanceshi/nezha-freebsd/releases/latest/download/dashboard"
     if ! wget -qO "$INSTALLER_FILE" "$DOWNLOAD_LINK"; then
         echo 'error: Download failed! Please check your network or try again.'
         return 1
     fi
-    curl -s https://api.github.com/repos/ansoncloud8/am-nezha-freebsd/releases/latest | jq -r '.tag_name' > ${WORKDIR}/VERSION
+    curl -s https://api.github.com/repos/renyuanceshi/nezha-freebsd/releases/latest | jq -r '.tag_name' > ${WORKDIR}/VERSION
     return 0
 }
 
